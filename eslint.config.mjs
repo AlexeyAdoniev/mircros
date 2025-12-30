@@ -39,9 +39,9 @@ export default [
     // Override or add rules here
     rules: {
       '@typescript-eslint/no-explicit-any': 'off',
-      '@typescript-eslint/no-floating-promises': 'warn',
-      '@typescript-eslint/no-unsafe-argument': 'warn',
-      '@typescript-eslint/explicit-function-return-type': 'warn',
+      // '@typescript-eslint/no-floating-promises': 'warn',
+      // '@typescript-eslint/no-unsafe-argument': 'warn',
+      // '@typescript-eslint/explicit-function-return-type': 'warn',
     },
   },
 ];
