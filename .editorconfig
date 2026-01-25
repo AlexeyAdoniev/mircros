@@ -1,4 +1,4 @@
-# Editor configuration, see http://editorconfig.org
+nx g @nx/nest:service users --project=jobber-auth# Editor configuration, see http://editorconfig.org
 root = true
 
 [*]
