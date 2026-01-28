@@ -4,23 +4,37 @@
   "license": "MIT",
   "scripts": {
     "migrate:jobber-auth": "npx prisma migrate dev --config apps/jobber-auth/prisma/config.ts --name init",
-    "migrate": "npm run migrate:jobber-auth"
+    "migrate": "npm run migrate:jobber-auth",
+    "generate-ts-proto": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./types ./proto/*.proto --ts_proto_opt=nestJs=true"
+  },
+  "nx": {
+    "targets": {
+      "generate-ts-proto": {
+        "cache": true,
+        "inputs": [
+          "{workspaceRoot}/proto/*.proto"
+        ]
+      }
+    }
   },
   "private": true,
   "dependencies": {
     "@apollo/server": "^5.2.0",
     "@as-integrations/express5": "^1.1.2",
     "@golevelup/nestjs-discovery": "^6.1.1",
+    "@grpc/grpc-js": "^1.14.3",
+    "@grpc/proto-loader": "^0.8.0",
     "@nestjs/apollo": "^13.2.3",
     "@nestjs/common": "^11.0.0",
     "@nestjs/config": "^4.0.2",
     "@nestjs/core": "^11.0.0",
     "@nestjs/graphql": "^13.2.3",
     "@nestjs/jwt": "^11.0.2",
+    "@nestjs/microservices": "^11.1.12",
     "@nestjs/passport": "^11.0.5",
     "@nestjs/platform-express": "^11.0.0",
-    "@prisma/adapter-pg": "^7.2.0",
-    "@prisma/client": "^7.2.0",
+    "@prisma/adapter-pg": "^7.3.0",
+    "@prisma/client": "^7.3.0",
     "axios": "^1.6.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.3",
@@ -29,7 +43,8 @@
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.8.0"
+    "rxjs": "^7.8.0",
+    "ts-proto": "^2.11.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.8.0",
@@ -59,7 +74,7 @@
     "jest-util": "^30.0.2",
     "nx": "22.3.3",
     "prettier": "~3.6.2",
-    "prisma": "^7.2.0",
+    "prisma": "^7.3.0",
     "ts-jest": "^29.4.0",
     "ts-node": "10.9.1",
     "tslib": "^2.3.0",
