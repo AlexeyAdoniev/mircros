@@ -15,6 +15,7 @@ async function bootstrap() {
   app.setGlobalPrefix(globalPrefix);
   app.use(cookieParser());
   const port = app.get(ConfigService).getOrThrow('PORT');
+  console.log(port);
   await app.listen(port);
   Logger.log(
     `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`,
