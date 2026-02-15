@@ -1,12 +1,17 @@
-import { BadRequestException, Injectable, OnModuleInit } from '@nestjs/common';
+import {
+  BadRequestException,
+  Injectable,
+  InternalServerErrorException,
+  OnModuleInit,
+} from '@nestjs/common';
 
 import {
   DiscoveredClassWithMeta,
   DiscoveryService,
 } from '@golevelup/nestjs-discovery';
-import { JOB_METADATA_KEY } from '../decorators/job.decorator';
-import { Job as BaseJob } from './job';
-import { JobMetadata } from '../interfaces/job-metadata.interface';
+import { JOB_METADATA_KEY } from './decorators/job.decorator';
+import { Job as BaseJob } from './jobs/job';
+import { JobMetadata } from './interfaces/job-metadata.interface';
 
 @Injectable()
 export class JobsService implements OnModuleInit {
@@ -22,13 +27,17 @@ export class JobsService implements OnModuleInit {
   getJobs() {
     return this.jobs.map((job) => job.meta);
   }
-  async executeJob(name: string) {
+  async executeJob(name: string, data: object) {
     const job = this.jobs.find((job) => job.meta.name === name);
     if (!job) {
       throw new BadRequestException(`Jon ${name} does not exist`);
     }
 
-    await (job.discoveredClass.instance as BaseJob).execute();
+    if (!(job.discoveredClass.instance instanceof BaseJob)) {
+      throw new InternalServerErrorException("Job doesn't implement BaseJob");
+    }
+
+    await job.discoveredClass.instance.execute(data, job.meta.name);
     return job.meta;
   }
 }

@@ -1,13 +1,13 @@
 import { Module, ValidationPipe } from '@nestjs/common';
 import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
-import { JobsModule } from './jobs/jobs.module';
+import { JobsModule } from './jobs.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriverConfig, ApolloDriver } from '@nestjs/apollo';
 
 @Module({
   imports: [
-    ConfigModule,
+    ConfigModule.forRoot({ isGlobal: true }),
     JobsModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       autoSchemaFile: true,

@@ -5,6 +5,7 @@
   "scripts": {
     "migrate:jobber-auth": "npx prisma migrate dev --config apps/jobber-auth/prisma/config.ts --name init",
     "migrate": "npm run migrate:jobber-auth",
+    "start": "nx run-many -t serve -p jobber-auth jobber-jobs jobber-executor",
     "generate-ts-proto": "protoc --plugin=./node_modules/.bin/protoc-gen-ts_proto --ts_proto_out=./types ./proto/*.proto --ts_proto_opt=nestJs=true"
   },
   "nx": {
@@ -39,9 +40,12 @@
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.3",
     "cookie-parser": "^1.4.7",
+    "fibonacci": "^1.6.12",
     "graphql": "^16.12.0",
+    "graphql-type-json": "^0.3.2",
     "passport": "^0.7.0",
     "passport-jwt": "^4.0.1",
+    "pulsar-client": "^1.16.0",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.8.0",
     "ts-proto": "^2.11.1"

@@ -39,7 +39,7 @@ export class GqlAuthGuard implements CanActivate, OnModuleInit {
     if (!token) {
       return false;
     }
-    console.log(token, 't');
+
     return this.authService.authenticate({ token }).pipe(
       map((res) => {
         this.logger.log(res, 'xar');
