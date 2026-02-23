@@ -4,8 +4,10 @@
  */
 
 import { INestApplication, Logger } from '@nestjs/common';
-import cookieParser from 'cookie-parser';
+//import cookieParser from 'cookie-parser';
 import { ConfigService } from '@nestjs/config';
+
+const cookieParser = require('cookie-parser');
 
 export async function init(app: INestApplication) {
   const globalPrefix = 'api';
