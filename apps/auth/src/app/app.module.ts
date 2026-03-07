@@ -9,6 +9,8 @@ import { APP_PIPE } from '@nestjs/core';
 import { ConfigModule } from '@nestjs/config';
 import { join } from 'path';
 import { AuthModule } from './auth/auth.module';
+import { LoggerModule } from '@jobber/nestjs';
+import { GqlLoggerPlugin } from '@jobber/graphql';
 
 @Module({
   imports: [
@@ -23,6 +25,7 @@ import { AuthModule } from './auth/auth.module';
     PrismaModule,
     GraphQLModule.forRoot<ApolloDriverConfig>({
       driver: ApolloDriver,
+      plugins: [new GqlLoggerPlugin()],
       playground: {
         settings: {
           'request.credentials': 'include',
@@ -31,6 +34,7 @@ import { AuthModule } from './auth/auth.module';
       context: ({ req, res }) => ({ request: req, response: res }),
       autoSchemaFile: true,
     }),
+    LoggerModule,
     UsersModule,
     AuthModule,
   ],

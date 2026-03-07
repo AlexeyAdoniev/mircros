@@ -15,6 +15,7 @@ import {
   AUTH_SERVICE_NAME,
   AUTH_PACKAGE_NAME,
 } from '@jobber/grpc';
+import { Request } from 'express';
 
 @Injectable()
 export class GqlAuthGuard implements CanActivate, OnModuleInit {
@@ -46,8 +47,8 @@ export class GqlAuthGuard implements CanActivate, OnModuleInit {
         this.getRequest(context).user = res;
         return true;
       }),
-      catchError(() => {
-        this.logger.log('err');
+      catchError((e) => {
+        this.logger.log(e);
         return of(false);
       }),
     );

@@ -44,6 +44,7 @@ export class AuthService {
       }
       return user;
     } catch (e) {
+      console.log(e);
       throw new UnauthorizedException('Credentials are not valid');
     }
   }

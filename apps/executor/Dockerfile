@@ -8,10 +8,12 @@ COPY tsconfig*.json ./
 COPY jest.config.ts ./
 COPY jest.preset.js ./
 COPY eslintrc.* ./
+COPY webpack.*.config.js ./
 
 COPY apps/executor ./apps/executor
 COPY libs/nestjs ./libs/nestjs
 COPY libs/pulsar ./libs/pulsar
+
 
 
 RUN npm install
