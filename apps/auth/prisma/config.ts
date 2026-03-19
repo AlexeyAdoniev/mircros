@@ -8,7 +8,7 @@ const x = defineConfig({
     seed: 'tsx seed.ts',
   },
   datasource: {
-    url: env('AUTH_DATABASE_URL'),
+    url: process.env['AUTH_DATABASE_URL'],
   },
 });
 
