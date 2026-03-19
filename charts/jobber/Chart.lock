@@ -1,0 +1,9 @@
+dependencies:
+- name: pulsar
+  repository: https://pulsar.apache.org/charts
+  version: 3.7.0
+- name: postgresql
+  repository: https://charts.bitnami.com/bitnami
+  version: 18.5.6
+digest: sha256:abadb41332b51c090a3fe16a63b023458120cd213191fa6a7dc77f088d966bf0
+generated: "2026-03-15T03:20:16.289459604+02:00"
