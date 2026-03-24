@@ -15,6 +15,18 @@ spec:
       labels:
         app: auth
     spec: 
+      initContainers: 
+        - name: prisma-migrate
+          image: {{ .Values.auth.image }}
+          imagePullPolicy: {{ .Values.global.imagePullPolicy }}
+          command: ["sh", "-c"]
+          args: 
+            - |
+              npx prisma migrate dev --config apps/auth/prisma/config.ts --name init
+          env:
+            {{- include "common.env" . | nindent 12}}
+            - name: AUTH_DATABASE_URL
+              value: postgresql://postgres:postgres@{{ .Release.Name }}-postgresql.postgresql.svc.cluster.local:5432/jobber-auth?schema=public
       containers:
         - name: auth
           image: {{ .Values.auth.image }}
