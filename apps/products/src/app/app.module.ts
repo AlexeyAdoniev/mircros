@@ -2,9 +2,16 @@ import { Module, ValidationPipe } from '@nestjs/common';
 import { LoggerModule } from '@jobber/nestjs';
 import { ConfigModule } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
+import { DatabaseModule } from './database/database.module';
+import { ProductsMoudle } from './products/products.module';
 
 @Module({
-  imports: [LoggerModule, ConfigModule.forRoot({ isGlobal: true })],
+  imports: [
+    ProductsMoudle,
+    LoggerModule,
+    ConfigModule.forRoot({ isGlobal: true }),
+    DatabaseModule,
+  ],
   controllers: [],
   providers: [
     {
