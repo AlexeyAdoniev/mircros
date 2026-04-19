@@ -4,10 +4,12 @@ import { ConfigModule } from '@nestjs/config';
 import { APP_PIPE } from '@nestjs/core';
 import { DatabaseModule } from './database/database.module';
 import { ProductsMoudle } from './products/products.module';
+import { CategoriesModule } from './categories/categories.module';
 
 @Module({
   imports: [
     ProductsMoudle,
+    CategoriesModule,
     LoggerModule,
     ConfigModule.forRoot({ isGlobal: true }),
     DatabaseModule,

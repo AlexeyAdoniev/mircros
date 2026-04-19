@@ -5,7 +5,7 @@
   "scripts": {
     "migrate:auth": "npx prisma migrate dev --config apps/auth/prisma/config.ts --name init",
     "migrate": "npm run migrate:auth",
-    "start": "nx run-many -t serve -p auth jobs executor --no-tui"
+    "start": "nx run-many -t serve -p auth jobs executor products --no-tui --parallel 4"
   },
   "workspaces": [
     "apps/*",
