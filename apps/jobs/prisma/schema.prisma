@@ -1,0 +1,25 @@
+generator client {
+    provider = "prisma-client-js"
+    binaryTargets = ["native", "debian-openssl-1.1.x"]
+    output = "../../../node_modules/@prisma-clients/jobs"
+}
+
+datasource db {
+    provider = "postgresql"
+}
+
+enum JobStatus {
+    IN_PROGRESS
+    COMPLETED
+    FAILED
+}
+
+model Job {
+    id Int @default(autoincrement()) @id
+    name String
+    status JobStatus
+    size Int
+    completed Int
+    started DateTime @default(now())
+    ended DateTime?
+}

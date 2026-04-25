@@ -8,11 +8,14 @@ import { join } from 'path';
 import { LoggerModule } from '@jobber/nestjs';
 import { GqlLoggerPlugin } from '@jobber/graphql';
 import { UploadsModule } from './uploads/uploads.module';
+import { PrismaModule } from './prisma/prisma.module';
+import JobsController from './jobs.controller';
 
 @Module({
   imports: [
     LoggerModule,
     UploadsModule,
+    PrismaModule,
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: [
@@ -33,7 +36,6 @@ import { UploadsModule } from './uploads/uploads.module';
       },
     }),
   ],
-  controllers: [],
   providers: [
     {
       provide: APP_PIPE,

@@ -1,0 +1,12 @@
+docker build -t jobs -f apps/jobs/Dockerfile .
+
+minikube service auth-http -n jobber
+
+kubectl get po -n jobber
+
+
+helm upgrade jobber .  -n jobber
+
+
+kubectl get pv
+kubectl delete pvc -n postgresql --all
